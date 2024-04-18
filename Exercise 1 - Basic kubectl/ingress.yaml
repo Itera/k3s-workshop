@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  labels:
+    app: nginx
+  name: ingress
+  namespace: workshop
+spec:
+  rules:
+    - host: k3s.workshop.itera.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: workshop-service
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
