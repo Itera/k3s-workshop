@@ -20,9 +20,11 @@ From [the docs](https://docs.k3s.io/installation/requirements?os=pi):
 
 Append `cgroup_memory=1 cgroup_enable=memory` to `/boot/cmdline.txt` after building the OS image before booting it.
 
-You will most likely also need to install vxlan support on newer versions.
+You may also need to install vxlan support.
 
 `apt install linux-modules-extra-raspi`
+
+If its not found - check does `modprobe vxlan` return any errors - if not - you already have it.
 
 ## Multiplatform
 
