@@ -64,7 +64,7 @@ flowchart LR
 
     I-->|8080|S
 
-    S-->|1234|D
+    S-->|80|D
 
     CM-->|Mount index.html|P1
     CM-->|Mount index.html|P2
