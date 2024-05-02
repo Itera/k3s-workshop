@@ -29,6 +29,47 @@ kubectl apply -f <filename>.yaml
 
 ## Exercise
 
+The aim here is to deploy nginx - reading index.html from config - with ingress to service to deployment routing.
+
+The following diagram (easiest to see on github - where it should be rendered) shows what we want to achive.
+
+```mermaid
+flowchart LR
+    CM["`**Config Map**
+    contains index.html`"]
+
+    subgraph D[Deployment]
+    
+    P1["`**Nginx**
+    port: 1234`"]
+    
+    P2["`**Nginx**
+    port: 1234`"]
+    
+    end
+
+    S["`**Service**
+    port: 8080
+    targetPort: 1234`"]
+
+    subgraph IC[Ingress Controller]
+    I[Ingress]
+    end
+
+    HTTP([HTTP])
+    HTTPS([HTTPS])
+
+    HTTP-->|80|IC
+    HTTPS-->|443|IC
+
+    I-->|8080|S
+
+    S-->|1234|D
+
+    CM-->|Mount index.html|P1
+    CM-->|Mount index.html|P2
+```
+
 For each of these use either k9s or `kubectl get` to check the result
 
 ```shell
